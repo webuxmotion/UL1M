@@ -116,6 +116,40 @@ php artisan serve
 
 ---
 
+## Creating Super Admin User (Production)
+
+If you need to create a super admin user on production from the terminal:
+
+### Method 1: Using Tinker (Interactive)
+```bash
+php artisan tinker
+```
+
+Then in the Tinker shell:
+```php
+use Illuminate\Support\Facades\Hash;
+
+User::create([
+    'name' => 'Super Admin',
+    'email' => 'your-email@example.com',
+    'password' => Hash::make('your-secure-password'),
+    'role' => 'super_admin',
+]);
+```
+
+### Method 2: One-liner Command
+```bash
+php artisan tinker --execute="use Illuminate\Support\Facades\Hash; \App\Models\User::create(['name' => 'Super Admin', 'email' => 'admin@example.com', 'password' => Hash::make('your-password'), 'role' => 'super_admin']);"
+```
+
+**Important Notes:**
+- Replace `admin@example.com` and `your-password` with your desired credentials
+- Use a strong password in production
+- The `role` field must be set to `'super_admin'`
+- Super admins don't have a `workshop_id` (only workshop admins do)
+
+---
+
 ## Troubleshooting
 
 ### Database Connection Issues

@@ -13,11 +13,16 @@ class Workshop extends Model
 
     protected $fillable = [
         'name',
-        'city',
+        'city_id',
         'address',
         'phone',
         'admin_id',
     ];
+
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
+    }
 
     public function admin(): BelongsTo
     {

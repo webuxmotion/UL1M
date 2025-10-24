@@ -48,11 +48,11 @@
                 All Cities
             </button>
             @php
-                $cities = \App\Models\Workshop::select('city')->distinct()->pluck('city');
+                $cities = \App\Models\City::whereHas('workshops')->orderBy('name')->get();
             @endphp
             @foreach($cities as $city)
-            <button onclick="filterCity('{{ strtolower($city) }}')" class="city-filter px-6 py-2 rounded-full border-2 border-black hover:bg-black hover:text-white transition font-medium">
-                {{ $city }}
+            <button onclick="filterCity('{{ strtolower($city->name) }}')" class="city-filter px-6 py-2 rounded-full border-2 border-black hover:bg-black hover:text-white transition font-medium">
+                {{ $city->name }}
             </button>
             @endforeach
         </div>
@@ -79,11 +79,11 @@
                 @php
                     $workshop = $parts->first()->workshop;
                 @endphp
-                <div class="mb-16 flex gap-0" data-city="{{ strtolower($workshop->city) }}">
+                <div class="mb-16 flex gap-0" data-city="{{ strtolower($workshop->city->name ?? '') }}">
                     <!-- Vertical Workshop Label -->
                     <div class="flex-shrink-0 border-r-2 border-black pr-4 mr-8">
                         <div class="vertical-text text-2xl font-bold whitespace-nowrap">
-                            {{ $workshop->city }}, {{ $workshop->name }}
+                            {{ $workshop->city->name ?? 'N/A' }}, {{ $workshop->name }}
                         </div>
                     </div>
 

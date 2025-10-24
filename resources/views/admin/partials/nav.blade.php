@@ -4,6 +4,7 @@
             <div class="flex space-x-6">
                 <a href="{{ route('admin.dashboard') }}" class="font-semibold hover:text-blue-200">Dashboard</a>
                 @if(auth()->user()->isSuperAdmin())
+                <a href="{{ route('admin.cities.index') }}" class="hover:text-blue-200">Cities</a>
                 <a href="{{ route('admin.workshops.index') }}" class="hover:text-blue-200">Workshops</a>
                 @endif
                 <a href="{{ route('admin.parts.index') }}" class="hover:text-blue-200">Parts</a>

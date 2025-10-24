@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\PartController;
 use App\Http\Controllers\Admin\WorkshopController;
 use App\Http\Controllers\ProfileController;
@@ -37,8 +38,9 @@ Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix
         return view('admin.dashboard');
     })->name('dashboard');
 
-    // Workshops (Super Admin only)
+    // Cities (Super Admin only)
     Route::middleware(\App\Http\Middleware\SuperAdminMiddleware::class)->group(function () {
+        Route::resource('cities', CityController::class)->except(['show']);
         Route::resource('workshops', WorkshopController::class);
     });
 

@@ -28,11 +28,20 @@
 
                 <div class="mb-4">
                     <label class="block text-gray-700 font-semibold mb-2">City</label>
-                    <input type="text" name="city" value="{{ old('city', $workshop->city) }}"
-                           class="w-full border rounded px-3 py-2 @error('city') border-red-500 @enderror" required>
-                    @error('city')
+                    <select name="city_id" class="w-full border rounded px-3 py-2 @error('city_id') border-red-500 @enderror" required>
+                        <option value="">Select city</option>
+                        @foreach($cities as $city)
+                        <option value="{{ $city->id }}" {{ old('city_id', $workshop->city_id) == $city->id ? 'selected' : '' }}>
+                            {{ $city->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    @error('city_id')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
+                    <p class="text-gray-500 text-sm mt-1">
+                        Don't see your city? <a href="{{ route('admin.cities.create') }}" class="text-blue-600 hover:underline" target="_blank">Add a new city</a>
+                    </p>
                 </div>
 
                 <div class="mb-4">

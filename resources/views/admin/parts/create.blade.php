@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Part - Robotics Catalog</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tiny.cloud/1/9jlcg8c0pvwreiywm5080k1dsh49i90y43thi6eo7uontzko/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
 </head>
 <body class="bg-gray-100">
     @include('admin.partials.nav')
@@ -127,5 +128,20 @@
             </form>
         </div>
     </div>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea[name="description"]',
+            height: 400,
+            menubar: false,
+            plugins: [
+                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists',
+                'media', 'searchreplace', 'table', 'visualblocks', 'wordcount', 'code',
+                'fullscreen', 'insertdatetime', 'preview', 'help'
+            ],
+            toolbar: 'undo redo | blocks fontsize | bold italic underline strikethrough | forecolor backcolor | link media table | align lineheight | numlist bullist indent outdent | emoticons charmap codesample | code fullscreen | removeformat | help',
+            content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; }'
+        });
+    </script>
 </body>
 </html>

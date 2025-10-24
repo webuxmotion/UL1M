@@ -5,6 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $part->name }} - UL1M</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .prose {
+            color: #374151;
+            max-width: 65ch;
+        }
+        .prose p {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+        .prose strong {
+            font-weight: 600;
+            color: #111827;
+        }
+        .prose em {
+            font-style: italic;
+        }
+        .prose ul, .prose ol {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            padding-left: 1.5em;
+        }
+        .prose ul {
+            list-style-type: disc;
+        }
+        .prose ol {
+            list-style-type: decimal;
+        }
+        .prose li {
+            margin-top: 0.25em;
+            margin-bottom: 0.25em;
+        }
+        .prose a {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+        .prose a:hover {
+            color: #1d4ed8;
+        }
+        .prose h1, .prose h2, .prose h3, .prose h4 {
+            font-weight: 600;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+            color: #111827;
+        }
+        .prose h1 {
+            font-size: 1.5em;
+        }
+        .prose h2 {
+            font-size: 1.3em;
+        }
+        .prose h3 {
+            font-size: 1.1em;
+        }
+        .prose img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 1em 0;
+        }
+        .prose table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1em 0;
+        }
+        .prose th, .prose td {
+            border: 1px solid #e5e7eb;
+            padding: 0.5em;
+            text-align: left;
+        }
+        .prose th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body class="bg-white">
     <!-- Header -->
@@ -64,7 +138,11 @@
                     <h1 class="text-4xl font-bold mb-4">{{ $part->name }}</h1>
 
                     @if($part->description)
-                    <p class="text-gray-600 text-lg mb-6">{{ $part->description }}</p>
+                    <div class="bg-gray-50 border-l-4 border-blue-500 p-4 mb-6">
+                        <div class="text-gray-700 text-lg leading-relaxed prose prose-lg max-w-none">
+                            {!! $part->description !!}
+                        </div>
+                    </div>
                     @endif
 
                     <div class="space-y-4 mb-8">
@@ -92,7 +170,7 @@
                         <div class="border-t pt-4">
                             <p class="text-sm text-gray-500">Available at Workshop</p>
                             <p class="text-xl font-bold">{{ $part->workshop->name }}</p>
-                            <p class="text-gray-600">{{ $part->workshop->city }}</p>
+                            <p class="text-gray-600">{{ $part->workshop->city->name ?? 'N/A' }}</p>
                             <p class="text-gray-600">{{ $part->workshop->address }}</p>
                             <p class="text-gray-600">{{ $part->workshop->phone }}</p>
                         </div>

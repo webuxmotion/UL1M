@@ -11,7 +11,7 @@ class SearchController extends Controller
     {
         $search = $request->input('search');
 
-        $parts = Part::with('workshop')
+        $parts = Part::with(['workshop.city'])
             ->when($search, function ($query) use ($search) {
                 $query->search($search);
             })
@@ -26,7 +26,7 @@ class SearchController extends Controller
 
     public function show(Part $part)
     {
-        $part->load('workshop');
+        $part->load(['workshop.city']);
         return view('search.show', compact('part'));
     }
 }

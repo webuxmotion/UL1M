@@ -39,7 +39,7 @@
                     @foreach($workshops as $workshop)
                     <tr>
                         <td class="px-6 py-4">{{ $workshop->name }}</td>
-                        <td class="px-6 py-4">{{ $workshop->city }}</td>
+                        <td class="px-6 py-4">{{ $workshop->city->name ?? 'N/A' }}</td>
                         <td class="px-6 py-4">{{ $workshop->address }}</td>
                         <td class="px-6 py-4">{{ $workshop->phone }}</td>
                         <td class="px-6 py-4">{{ $workshop->admin->name ?? 'N/A' }}</td>

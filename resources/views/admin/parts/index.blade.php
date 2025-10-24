@@ -28,6 +28,7 @@
                 <thead class="bg-gray-50">
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Manufacturer</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Part Number</th>
@@ -41,6 +42,7 @@
                     @foreach($parts as $part)
                     <tr>
                         <td class="px-6 py-4">{{ $part->name }}</td>
+                        <td class="px-6 py-4">{{ Str::limit($part->description ?? 'N/A', 50) }}</td>
                         <td class="px-6 py-4">{{ $part->category }}</td>
                         <td class="px-6 py-4">{{ $part->manufacturer ?? 'N/A' }}</td>
                         <td class="px-6 py-4">{{ $part->part_number ?? 'N/A' }}</td>
